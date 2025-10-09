@@ -53,16 +53,14 @@ private:
 int main() {
     PolygonAreaCalculator poly;
     
-    poly.addVertex(-126.50178084874047,
-              62.55180394517623);  
-    poly.addVertex(149.31385506563117,
-              62.55180394517623);   
-    poly.addVertex(149.31385506563117,
-              82.53143984408504);   
-    poly.addVertex(-126.50178084874047,
-              82.53143984408504);
-    // poly.addVertex(49.781084656594174,
-    //           60.69909623397433);
+    poly.addVertex(97.32376613328285,
+              62.23311478722687);  
+    poly.addVertex(97.32480312674039,
+              62.22892238751166);   
+    poly.addVertex(97.33431998217708,
+              62.22976096128062);   
+    poly.addVertex(97.33191026910868,
+              62.23283055634505);
 
     std::cout << "Площадь: " << static_cast<long long>(poly.getArea()) << " м²\n";
 
