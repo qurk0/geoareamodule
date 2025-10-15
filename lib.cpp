@@ -30,10 +30,26 @@ public:
         }
     }
 
+    void removeVertex(int idx) {
+        double tmp = 0;
+        geodesicSegment(vertices[(idx - 1) % vertices.size()], vertices[idx], tmp);
+        geodesicSegment(vertices[idx], vertices[(idx + 1) % vertices.size()], tmp);
+
+        areaAccum -= tmp;
+        
+        geodesicSegment(vertices[(idx - 1) % vertices.size()], vertices[(idx + 1) % vertices.size()], areaAccum);
+    
+        vertices.erase(vertices.begin() + idx);
+    }
+
     double getArea() {
-        if (vertices.size() > 2)
-            geodesicSegment(vertices.back(), vertices.front(), areaAccum);
-        return std::abs(areaAccum);
+        if (vertices.size() <= 2) {
+            return -1.0;
+        }
+        
+        double area = areaAccum;
+        geodesicSegment(vertices.back(), vertices.front(), area);
+        return std::abs(area);
     }
 
 private:
@@ -62,7 +78,11 @@ int main() {
     poly.addVertex(97.33191026910868,
               62.23283055634505);
 
-    std::cout << "Площадь: " << static_cast<long long>(poly.getArea()) << " м²\n";
+    std::cout << "Площадь до удаления точки: " << static_cast<long long>(poly.getArea()) << " м²\n";
+
+    poly.removeVertex(2);
+
+    std::cout << "Площадь после удаления точки: " << static_cast<long long>(poly.getArea()) << " м²\n";
 
     return 0;
 }
