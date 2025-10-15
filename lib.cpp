@@ -30,7 +30,7 @@ public:
         }
     }
 
-    void removeVertex(int idx) {
+    void removeVertex(uint idx) {
         double tmp = 0;
         geodesicSegment(vertices[(idx - 1) % vertices.size()], vertices[idx], tmp);
         geodesicSegment(vertices[idx], vertices[(idx + 1) % vertices.size()], tmp);
